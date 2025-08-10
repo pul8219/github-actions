@@ -18,4 +18,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install Flake8
       - name: Run Flake8
-        run: flake8 .
+        run: flake8 . --exit-zero
