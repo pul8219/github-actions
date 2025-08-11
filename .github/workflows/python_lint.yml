@@ -30,8 +30,10 @@ jobs:
         continue-on-error: true
       - name: Send result via dooray alert when lint failure
         if: steps.lint.outputs.exit_code != '0'
+        env:
+          RESULT_JSON: ${{ steps.lint.outputs.result_json }}
         run: |
           echo "🚨 Sending flake8 result..."
           curl -X POST https://nhnent.dooray.com/services/3234962574780345705/4132425382063010358/QicdugUEQ1aLyOidQFZY1Q \
             -H "Content-Type: application/json" \
-            -d "{\"botName\":\"Github actions\",\"botIconImage\":\"https://static.dooray.com/static_images/dooray-bot.png\",\"text\":\"${{ steps.lint.outputs.result_json }}\"}"
+            -d "{\"botName\":\"Github actions\",\"botIconImage\":\"https://static.dooray.com/static_images/dooray-bot.png\",\"text\":$RESULT_JSON}"
