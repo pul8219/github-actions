@@ -18,4 +18,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install Flake8
       - name: Run Flake8
-        run: flake8 . --exit-zero
+        id: run_flake8
+        run: |
+          result=$(flake8 .)
+          echo "my_output=$result" >> $GITHUB_OUTPUT
+      - name: Send dooray alert on failure
+        if: failure()
+        run: |
+          curl -X POST https://nhnent.dooray.com/services/3234962574780345705/4132407124400333106/8zwN04NnRKSs4BZ9RvqBlw \
+            -H "Content-Type: application/json" \
+            -d '{"botName": "Github actions", "botIconImage": "https://static.dooray.com/static_images/dooray-bot.png", "text":"${{ steps.run_flake8.outputs.my_output }}"}'
