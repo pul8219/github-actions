@@ -25,6 +25,6 @@ jobs:
       - name: Send dooray alert on failure
         if: failure()
         run: |
-          curl -X POST https://nhnent.dooray.com/services/3234962574780345705/4132407124400333106/8zwN04NnRKSs4BZ9RvqBlw \
+          curl -X POST https://nhnent.dooray.com/services/3234962574780345705/4132425382063010358/QicdugUEQ1aLyOidQFZY1Q \
             -H "Content-Type: application/json" \
             -d '{"botName": "Github actions", "botIconImage": "https://static.dooray.com/static_images/dooray-bot.png", "text":"${{ steps.run_flake8.outputs.my_output }}"}'
