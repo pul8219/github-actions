@@ -24,9 +24,8 @@ jobs:
           result=$(flake8 .)
           exit_code=$?
           echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
-          echo "result<<EOF" >> $GITHUB_OUTPUT
-          echo "$result" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          result_json=$(echo "$result" | jq -Rs .)
+          echo "result_json=$result_json" >> $GITHUB_OUTPUT
           exit $exit_code
         continue-on-error: true
       - name: Send result via dooray alert when lint failure
