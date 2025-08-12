@@ -36,4 +36,4 @@ jobs:
           echo "🚨 Sending flake8 result..."
           curl -X POST https://nhnent.dooray.com/services/3234962574780345705/4132425382063010358/QicdugUEQ1aLyOidQFZY1Q \
             -H "Content-Type: application/json" \
-            -d "{\"botName\":\"Python Linter\",\"botIconImage\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1200px-Python.svg.png\",\"text\":\"PEP8 check finished\nresult\:\n${RESULT_JSON}\""}"
+            -d "{\"botName\":\"Python Linter\",\"botIconImage\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1200px-Python.svg.png\",\"text\":\"PEP8 check finished\nresult\:\n${RESULT_JSON}\"}"
